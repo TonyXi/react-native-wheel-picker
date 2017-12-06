@@ -63,22 +63,18 @@ class WheelCurvedPicker extends Component {
 	}
 }
 
-<<<<<<< HEAD
-WheelCurvedPicker.Item = () => null;
-=======
-WheelCurvedPicker.Item = React.createClass({
-	propTypes: {
+class Item extends Component {
+	static propTypes = {
 		value: PropTypes.any, // string or integer basically
 		label: PropTypes.string,
-	},
+	};
 
-	render: function() {
-		// These items don't get rendered directly.
+	render() {
 		return null;
-	},
-});
->>>>>>> parent of 225e117... Remove references to prop types and fix Java compile error
+	}
+}
 
+WheelCurvedPicker.Item = Item;
 var WheelCurvedPickerNative = requireNativeComponent('WheelCurvedPicker', WheelCurvedPicker);
 
 module.exports = WheelCurvedPicker;
