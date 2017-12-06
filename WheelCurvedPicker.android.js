@@ -1,9 +1,22 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {View, requireNativeComponent} from 'react-native';
+import PropTypes from 'prop-types';
+import {View, ColorPropType, requireNativeComponent} from 'react-native';
 
 class WheelCurvedPicker extends Component {
+	static propTypes = {
+		...View.propTypes,
+		data: PropTypes.array,
+		textColor: ColorPropType,
+		textSize: PropTypes.number,
+		itemStyle: PropTypes.object,
+		itemSpace: PropTypes.number,
+		onValueChange: PropTypes.func,
+		selectedValue: PropTypes.any,
+		selectedIndex: PropTypes.number,
+	};
+
 	static defaultProps = {
 		itemStyle : {color:"white", fontSize:26},
 		itemSpace: 20
@@ -50,7 +63,21 @@ class WheelCurvedPicker extends Component {
 	}
 }
 
+<<<<<<< HEAD
 WheelCurvedPicker.Item = () => null;
+=======
+WheelCurvedPicker.Item = React.createClass({
+	propTypes: {
+		value: PropTypes.any, // string or integer basically
+		label: PropTypes.string,
+	},
+
+	render: function() {
+		// These items don't get rendered directly.
+		return null;
+	},
+});
+>>>>>>> parent of 225e117... Remove references to prop types and fix Java compile error
 
 var WheelCurvedPickerNative = requireNativeComponent('WheelCurvedPicker', WheelCurvedPicker);
 
