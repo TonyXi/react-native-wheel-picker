@@ -3,7 +3,6 @@
 import React from 'react';
 import {
 	View,
-	ColorPropType,
 	requireNativeComponent,
 } from 'react-native';
 
