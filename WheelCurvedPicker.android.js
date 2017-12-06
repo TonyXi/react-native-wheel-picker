@@ -1,29 +1,23 @@
 'use strict';
 
-import React from 'react';
-import {
-	View,
-	requireNativeComponent,
-} from 'react-native';
+import React, {Component} from 'react';
+import {View, requireNativeComponent} from 'react-native';
 
+class WheelCurvedPicker extends Component {
+	static defaultProps = {
+		itemStyle : {color:"white", fontSize:26},
+		itemSpace: 20
+	};
 
-var WheelCurvedPicker = React.createClass ({
-	getDefaultProps(): Object {
-		return {
-			itemStyle : {color:"white", fontSize:26},
-			itemSpace: 20,
-		};
-	},
+	componentWillMount() {
+		this.setState(this._stateFromProps(this.props));
+	}
 
-	getInitialState: function() {
-		return this._stateFromProps(this.props);
-	},
-
-	componentWillReceiveProps: function(nextProps) {
+	componentWillReceiveProps(nextProps) {
 		this.setState(this._stateFromProps(nextProps));
-	},
+	}
 
-	_stateFromProps: function(props) {
+	_stateFromProps(props) {
 		var selectedIndex = 0;
 		var items = [];
 		React.Children.forEach(props.children, function (child, index) {
@@ -37,13 +31,13 @@ var WheelCurvedPicker = React.createClass ({
 		var textColor = props.itemStyle.color
 
 		return {selectedIndex, items, textSize, textColor};
-	},
+	}
 
-	_onValueChange: function(e: Event) {
+	_onValueChange = e => {
 		if (this.props.onValueChange) {
 			this.props.onValueChange(e.nativeEvent.data);
 		}
-	},
+	}
 
 	render() {
 		return <WheelCurvedPickerNative
@@ -54,14 +48,9 @@ var WheelCurvedPicker = React.createClass ({
 				textSize={this.state.textSize}
 				selectedIndex={parseInt(this.state.selectedIndex)} />;
 	}
-});
+}
 
-WheelCurvedPicker.Item = React.createClass({
-	render: function() {
-		// These items don't get rendered directly.
-		return null;
-	},
-});
+WheelCurvedPicker.Item = () => null;
 
 var WheelCurvedPickerNative = requireNativeComponent('WheelCurvedPicker', WheelCurvedPicker);
 
