@@ -22,14 +22,6 @@ class WheelCurvedPicker extends Component {
 		itemSpace: 20
 	};
 
-	componentWillMount() {
-		this.setState(this._stateFromProps(this.props));
-	}
-
-	componentWillReceiveProps(nextProps) {
-		this.setState(this._stateFromProps(nextProps));
-	}
-
 	_stateFromProps(props) {
 		var selectedIndex = 0;
 		var items = [];
@@ -53,13 +45,14 @@ class WheelCurvedPicker extends Component {
 	}
 
 	render() {
+		const {selectedIndex, items, textSize, textColor} = this._stateFromProps(this.props);
 		return <WheelCurvedPickerNative
 				{...this.props}
 				onValueChange={this._onValueChange}
-				data={this.state.items}
-				textColor={this.state.textColor}
-				textSize={this.state.textSize}
-				selectedIndex={parseInt(this.state.selectedIndex)} />;
+				data={items}
+				textColor={textColor}
+				textSize={textSize}
+				selectedIndex={parseInt(selectedIndex)} />;
 	}
 }
 
