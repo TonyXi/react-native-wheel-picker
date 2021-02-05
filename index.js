@@ -9,4 +9,4 @@ import {
 
 import WheelCurvedPicker from './WheelCurvedPicker'
 
-module.exports = (Platform.OS === 'ios' ? PickerIOS : WheelCurvedPicker)
+export default (Platform.OS === 'ios' ? PickerIOS : WheelCurvedPicker)
